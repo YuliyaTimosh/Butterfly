@@ -1,3 +1,27 @@
-<p>
-  flower works! ☻
-</p>
+
+<div class="container">
+  <br>
+<p> <mark>Квітка:</mark>{{name}}
+<small>Родина:</small>{{family}}</p>
+<div class="alert alert-success">
+Характеристики квітки:
+<ul>
+<li>Висота:<strong>{{high}}</strong></li>
+<li>Колір чашечки:<strong>{{colors.head}}</strong></li>
+<li>Колір стебла:<strong>{{colors.stem}}</strong></li>
+<li>Колір листя:<strong>{{colors.leaf}}</strong></li>
+
+</ul>
+</div>
+
+<p>Властивості квітки</p>
+<div class="alert alert-warning">
+<ul>
+<li *ngFor="let opt of options">{{opt}}</li>
+</ul>
+</div>
+<p>Оберіть рослину</p>
+<button class="btn btn-danger" (click)="flowerSelect('chamomilla')">Ромашка</button>
+<button class="btn btn-success" (click)="flowerSelect('rose')">Троянда</button>
+<button class="btn btn-info" (click)="flowerSelect('lilia')">Лілія</button>
+</div>
