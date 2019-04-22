@@ -1,27 +1,62 @@
-
 <div class="container">
   <br>
-<p> <mark>Квітка:</mark>{{name}}
-<small>Родина:</small>{{family}}</p>
-<div class="alert alert-success">
-Характеристики квітки:
-<ul>
-<li>Висота:<strong>{{high}}</strong></li>
-<li>Колір чашечки:<strong>{{colors.head}}</strong></li>
-<li>Колір стебла:<strong>{{colors.stem}}</strong></li>
-<li>Колір листя:<strong>{{colors.leaf}}</strong></li>
+  <p> <mark>Квітка:</mark>{{name}}
+    <small>Родина:</small>{{family}}</p>
+  <div class="alert alert-success">
+    Характеристики квітки:
+    <ul>
+      <li>Висота:<strong>{{high}}</strong>см</li>
+      <li>Колір чашечки:<strong>{{colors.head}}</strong></li>
+      <li>Колір стебла:<strong>{{colors.stem}}</strong></li>
+      <li>Колір листя:<strong>{{colors.leaf}}</strong></li>
 
-</ul>
-</div>
+    </ul>
+  </div>
 
-<p>Властивості квітки</p>
-<div class="alert alert-warning">
-<ul>
-<li *ngFor="let opt of options">{{opt}}</li>
-</ul>
-</div>
-<p>Оберіть рослину</p>
-<button class="btn btn-danger" (click)="flowerSelect('chamomilla')">Ромашка</button>
-<button class="btn btn-success" (click)="flowerSelect('rose')">Троянда</button>
-<button class="btn btn-info" (click)="flowerSelect('lilia')">Лілія</button>
+
+  <h4>Редагувати об'єкт</h4>
+  <button class="btn btn-danger" (click)="showEdit()">Редагувати</button>
+    <div><br></div>
+  <form *ngIf=isEdit>
+    <div class="form-group">
+<input type="text" name="option" placeholder="Назва квітки"
+ class="form-control" [(ngModel)]="name" name="name"><br>
+ <input type="text" name="option" placeholder="Родина квітки"
+  class="form-control" [(ngModel)]="family" name="family"><br>
+<input type="number" name="option" placeholder="Висота"
+class="form-control" [(ngModel)]="high" name="high"><br>
+<input type="text" name="option" placeholder="Колір чашечки"
+ class="form-control" [(ngModel)]="colors.head" name="head"><br>
+<input type="text" name="option" placeholder="Колір стебла"
+class="form-control" [(ngModel)]="colors.stem" name="stem"><br>
+<input type="text" name="option" placeholder="Колір листя"
+ class="form-control" [(ngModel)]="colors.leaf" name="leaf">
+
+    </div>
+  </form>
+
+  <h4>Властивості квітки</h4>
+  <form (submit)="addOpt(option.value)">
+    <div class="form-group">
+      <label for="option">Додати нову властивість</label>
+
+      <input type="text" id="option" name="option" placeholder="Заповніть поле" class="form-control" #option>
+      <br>
+      <button type="submit" class=" btn btn-outline-success">Додати</button>
+    </div>
+  </form>
+
+  <div class="alert alert-warning">
+    <ul>
+      <li *ngFor="let opt of options">
+        {{opt}} <button class="btn btn-warning btn-sm" type="button" name="button"
+(click)="deleteOpt(opt)">X</button>
+
+</li>
+    </ul>
+  </div>
+  <p>Оберіть рослину</p>
+  <button class="btn btn-danger" (click)="flowerSelect('chamomilla')">Ромашка</button>
+  <button class="btn btn-success" (click)="flowerSelect('rose')">Троянда</button>
+  <button class="btn btn-info" (click)="flowerSelect('lilia')">Лілія</button>
 </div>
